@@ -1,6 +1,6 @@
 FROM golang:1.22-alpine AS builder
-LABEL maintainer="yourname@example.com"
-LABEL project="Go Web Server"
+LABEL maintainer="awlhajb@gmail.com"
+LABEL project="ascii-art-web"
 
 WORKDIR /app
 
