@@ -1,41 +1,43 @@
-# ASCII Art Web
+# ASCII Art Web Dockerize
 
-A simple web application written in Go that converts user input into ASCII art using different banner styles.
+This project demonstrates how to containerize a Go web application that generates ASCII art using Docker.
 
-## Features
+## Docker Features
 
-- Web interface for submitting text and selecting a banner style
-- Renders ASCII art from user input
-- Custom error pages for invalid requests
-- Serves static file Css from the `static` directory
+- Multi-stage Docker build for small, secure images
+- Copies Go binary and required assets (`templates`, `static`) into the final image
+- Exposes port 8080 for web access
 
+## Quick Start
 
-### Running the Server
+### Build the Docker Image
 
-1. Clone the repository.
-2. Make sure you are in the project root directory.
-3. Run:
+```sh
+docker build -t ascii-art-web .
+```
 
-   ```sh
-   go run ascii-art-web/main.go
-   ```
+### Run the Container
 
-4. Open your browser and go to [http://localhost:8080](http://localhost:8080)
+```sh
+docker run -d -p 8080:8080 ascii-art-web
+```
 
-### Usage
+Open [http://localhost:8080](http://localhost:8080) in your browser.
 
-- Enter your text and select a banner style on the main page.
-- Submit the form to see your text rendered as ASCII art.
+## Project Structure
 
-## Notes
+- `Dockerfile` – Docker build instructions
+- `main.go` – Go web server source code
+- `templates/` – HTML templates
+- `static/` – Static assets (CSS, JS)
 
-- Static files are served from the `static` directory.
-- Templates are in the `templates` directory.
-- Error handling uses a custom error page (`error.html`).
+## How It Works
+
+- The Dockerfile uses a multi-stage build to compile the Go app and copy only the necessary files to a minimal Alpine image.
+- The server runs on port 8080 inside the container.
+- Static and template files are included for full web functionality.
 
 ## Authors
 
-- aoutrgua
 - boulhaj
-- melghama
-
+- mhilli
